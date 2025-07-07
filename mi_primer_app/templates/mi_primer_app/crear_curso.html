@@ -1,0 +1,310 @@
+<!-- templates/crear_curso.html -->
+<!--
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Crear curso</title>
+  <style>
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      background-color: #f0f4f8;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+    }
+    .form-container {
+      background: white;
+      padding: 2rem 3rem;
+      border-radius: 10px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+      width: 100%;
+      max-width: 400px;
+    }
+    h2 {
+      margin-bottom: 1.5rem;
+      color: #333;
+      text-align: center;
+    }
+    form p {
+      margin-bottom: 1rem;
+    }
+    label {
+      display: block;
+      margin-bottom: 0.3rem;
+      font-weight: 600;
+      color: #555;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 0.5rem 0.7rem;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      transition: border-color 0.3s ease;
+    }
+    input:focus, select:focus, textarea:focus {
+      outline: none;
+      border-color: #3f51b5;
+      box-shadow: 0 0 5px rgba(63,81,181,0.5);
+    }
+    button {
+      width: 100%;
+      background-color: #3f51b5;
+      color: white;
+      border: none;
+      padding: 0.8rem;
+      border-radius: 5px;
+      font-size: 1.1rem;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+    }
+    button:hover {
+      background-color: #303f9f;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">
+    <h2>Crear curso</h2>
+    <form method="post">
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button type="submit">Guardar</button>
+    </form>
+  </div>
+</body>
+</html>
+-->
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crear Curso</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background-color: #f0f0f0;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh; /* Ensure body takes full viewport height */
+        }
+
+        header {
+            background-color: #4CAF50; /* Green */
+            color: white;
+            padding: 20px 0;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5em;
+        }
+
+        header p {
+            margin: 5px 0 0;
+            font-size: 1.2em;
+        }
+
+        .container {
+            flex-grow: 1; /* Allow container to take up available space */
+            max-width: 800px;
+            margin: 20px auto;
+            background-color: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .form-group label {
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-group input[type="text"],
+        .form-group input[type="number"],
+        .form-group input[type="date"],
+        .form-group textarea {
+            width: 100%; /* Make inputs take full width of their container */
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box; /* Include padding and border in the element's total width and height */
+        }
+
+        .form-group textarea {
+            resize: vertical; /* Allow vertical resizing */
+            min-height: 100px;
+        }
+
+        .form-group.checkbox-group {
+            flex-direction: row;
+            align-items: center;
+        }
+
+        .form-group.checkbox-group label {
+            margin-bottom: 0;
+            margin-left: 5px;
+        }
+
+        .buttons-container {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .buttons-container button {
+            padding: 10px 20px;
+            margin: 0 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .buttons-container button.save-button {
+            background-color: #4CAF50; /* Green */
+            color: white;
+        }
+
+        .buttons-container button.more-button {
+            background-color: #007bff; /* Blue */
+            color: white;
+        }
+
+        .services-section {
+            text-align: center;
+            margin-top: 40px;
+            padding: 20px;
+            background-color: #f0f0f0;
+        }
+
+        .services-section h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        .service-cards {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap; /* Allow cards to wrap to the next line on smaller screens */
+        }
+
+        .service-card {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            width: 250px;
+            text-align: left;
+        }
+
+        .service-card.tutorials {
+            background-color: #e6ffe6; /* Light green */
+        }
+
+        .service-card.news {
+            background-color: #e6f7ff; /* Light blue */
+        }
+
+        .service-card.tools {
+            background-color: #fff2e6; /* Light orange */
+        }
+
+        .service-card h3 {
+            margin-top: 0;
+            color: #333;
+        }
+
+        .service-card p {
+            color: #666;
+            font-size: 0.9em;
+        }
+
+        footer {
+            margin-top: auto; /* Push footer to the bottom */
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            font-size: 0.9em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Hola Mundo</h1>
+        <p>Tu lugar para aprender y descubrir</p>
+    </header>
+
+    <div class="container">
+        <form action="#" method="post">
+            <div class="form-group">
+                <label for="nombre">Nombre:</label>
+                <input type="text" id="nombre" name="nombre" required>
+            </div>
+
+            <div class="form-group">
+                <label for="descripcion">Descripcion:</label>
+                <textarea id="descripcion" name="descripcion"></textarea>
+            </div>
+
+            <div class="form-group">
+                <label for="duracionSemanas">Duracion semanas:</label>
+                <input type="number" id="duracionSemanas" name="duracionSemanas" min="1">
+            </div>
+
+            <div class="form-group">
+                <label for="fechaInicio">Fecha Inicio:</label>
+                <input type="date" id="fechaInicio" name="fechaInicio">
+            </div>
+
+            <div class="form-group checkbox-group">
+                <input type="checkbox" id="activo" name="activo">
+                <label for="activo">Activo</label>
+            </div>
+
+            <div class="buttons-container">
+                <button type="submit" class="save-button">Guardar</button>
+                <button type="button" class="more-button">Ver Más</button>
+            </div>
+        </form>
+    </div>
+
+    <section class="services-section">
+        <h2>Nuestros Servicios</h2>
+        <div class="service-cards">
+            <div class="service-card tutorials">
+                <h3>Tutoriales</h3>
+                <p>Guías paso a paso para aprender nuevas habilidades.</p>
+            </div>
+            <div class="service-card news">
+                <h3>Noticias</h3>
+                <p>Últimas novedades sobre ciencia y tecnología.</p>
+            </div>
+            <div class="service-card tools">
+                <h3>Herramientas</h3>
+                <p>Utilidades online que te facilitarán la vida.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Mi Sitio Web. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
